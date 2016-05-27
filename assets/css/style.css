@@ -8,7 +8,7 @@ html, body {
 	background-color: rgb(35,234,229);
 }
 
-#questionBox {
+.questionBox {
 	background-color: rgb(240,90,40);
 	width: 50%;
 	margin-left: auto;
@@ -17,6 +17,8 @@ html, body {
 	text-align: center;
 	border: 2px solid rgb(75,45,16);
 	border-radius: 25px;
+	font-family: "brandon-grotesque", "Brandon Grotesque", sans-serif;
+	color: rgb(81,35,3); 
 }
 
 #timeRemaining{
@@ -36,4 +38,24 @@ header{
 h1{
 	height: 100px;
 	line-height: 100px;
+}
+
+.answer{
+	width: 75%;
+	text-align: left;
+	margin-top: 10px;
+	margin-bottom: 5px;
+	margin-left: auto;
+	margin-right: auto;
+	overflow: auto;
+	line-height: 15px;
+	border-radius: 25px;
+	padding-left: 6px;
+
+;
+}
+
+#title{
+	margin-top: 13px;
+	margin-bottom: 13px;
 }
