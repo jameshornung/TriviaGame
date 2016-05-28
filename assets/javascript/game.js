@@ -4,109 +4,110 @@ answerCorrect = 0;
 incorrectAnswer =0;
 notAnswered = 0;
 x = 0;
+var timer;
 var groovy = document.getElementById("groove");
 var imagine = document.getElementById("dreamer");
 
 var questions = {
 	quest: [
 	{
-		question: "this is question 1",
-		correctAnswer: "this is the correct answer",
+		question: "how many people worldwide live in extreme poverty (less than $1.25/day)? ",
+		correctAnswer: "1.3 billion",
 		answers: [
-			"fjdlfkjd",
-			"fddsg",
-			"ffsdfds",
-			"this is the correct answer"
+			"1 million",
+			"100 million",
+			"500 million",
+			"1.3 billion"
 			],
 	},
 	{
-		question: "which uses the most electricity?",
+		question: "1.3 billion is equivalent to the popluation of:",
+		correctAnswer: "the united states, brazil, pakistan, nigeria, russia, japan, and mexico combined.",
+		answers: [
+			"mexico",
+			"europe",
+			"canada",
+			"the united states, brazil, pakistan, nigeria, russia, japan, and mexico combined."
+			],
+	},
+	{
+		question: "which of the following uses the most electricity?",
 		correctAnswer: "cowboys stadium",
 		answers: [
-			"an electric car",
 			"cowboys stadium",
-			"lighting the UT tower",
+			"lighting the ut tower",
+			"electric car",
 			"liberia"
 			],
 	},
 	{
-		question: "this is question 3",
-		correctAnswer: "this is the correct answer",
+		question: "a third of all deaths in children under the age of five in developing countries are linked to:",
+		correctAnswer: "malnutrition",
 		answers: [
-			"fjdlfkjd",
-			"fddsg",
-			"ffsdfds",
-			"this is the correct answer"
+			"traffic accidents",
+			"malnutrition",
+			"domestic violence",
+			"tuberculosis"
 			],
 	},
 	{
-		question: "this is question 4",
-		correctAnswer: "this is the correct answer",
+		question: "the childhood obesity rate in america has risen from 7% in 1980 to what percent by 2012?",
+		correctAnswer: "18%",
 		answers: [
-			"fjdlfkjd",
-			"fddsg",
-			"ffsdfds",
-			"this is the correct answer"
+			"5%",
+			"10%",
+			"18%",
+			"25%"
 			],
 	},
 	{
-		question: "the gdp of texas is roughly equivalent to that of which country?",
-		correctAnswer: "mexico",
+		question: "what fraction of the world population lives without electricity?",
+		correctAnswer: "1/4",
 		answers: [
-			"mexico",
-			"russia",
-			"uzbekistan",
-			"kenya"
+			"1/16",
+			"1/8",
+			"1/4",
+			"1/2"
 			],
 	},
 	{
-		question: "this is question 6",
-		correctAnswer: "this is the correct answer",
+		question: "How many people remain without access to an improved source of drinking water, such as household connections or protected dug wells?",
+		correctAnswer: "783 million",
 		answers: [
-			"fjdlfkjd",
-			"fddsg",
-			"ffsdfds",
-			"this is the correct answer"
-			],
-	},
-	{
-		question: "this is question 7",
-		correctAnswer: "this is the correct answer",
-		answers: [
-			"fjdlfkjd",
-			"fddsg",
-			"ffsdfds",
-			"this is the correct answer"
+			"1.3 billion",
+			"783 million",
+			"25 million",
+			"653 million"
 			],
 	},		
 	{
-		question: "this is question 8",
-		correctAnswer: "this is the correct answer",
+		question: "what percent of the world population lives on less than $10 a day?",
+		correctAnswer: "80%",
 		answers: [
-			"fjdlfkjd",
-			"fddsg",
-			"ffsdfds",
-			"this is the correct answer"
+			"20%",
+			"40%",
+			"60%",
+			"80%"
 			],
 	},
 	{
-		question: "this is question 9",
-		correctAnswer: "this is the correct answer",
+		question: "what percent of the world population lives on less than $2.50 a day?",
+		correctAnswer: "50%",
 		answers: [
-			"fjdlfkjd",
-			"fddsg",
-			"ffsdfds",
-			"this is the correct answer"
+			"10%",
+			"25%",
+			"50%",
+			"75%"
 			],
 	},
 	{
-		question: "this is question 10",
-		correctAnswer: "this is the correct answer",
+		question: "how many children die each day due to poverty?",
+		correctAnswer: "22,000",
 		answers: [
-			"fjdlfkjd",
-			"fddsg",
-			"ffsdfds",
-			"this is the correct answer"
+			"2,000",
+			"12,000",
+			"22,000",
+			"220,000"
 			]
 	},
 	],
@@ -117,6 +118,7 @@ var questions = {
 //Functions
 //------------------------------------------------------------------------------------------------
 
+//display the questions and answers
 function display(){
 	$("#title").html(questions.quest[x].question);
 	$("#firstAnswer").html(questions.quest[x].answers[0]);
@@ -125,24 +127,45 @@ function display(){
 	$("#fourthAnswer").html(questions.quest[x].answers[3]);
 }
 
+//music controls
 function playBeasties(){
 	groovy.play();
 }
 
 function stopBeasties(){
 	groovy.pause();
+	groovy.currentTime = 0;
 }
 
 function playEddie(){
 	imagine.play();
 }
 
-function playGame(){
-	console.log(x);
+function stopEddie(){
+	imagine.pause();
+	imagine.currentTime = 0;
+}
 
+
+
+//General Code
+//------------------------------------------------------------------------------------------------
+
+$(".startButton").click(function(e)
+{
+
+	$(".startButton").hide();
+	display();
+	stopEddie();	
+	playBeasties();
+
+	var timer = setInterval(function(game) 
+	{
+		x++;
+		
 		if(x === 0)
 		{
-			
+			display();
 		};
 		
 		if(x === 1)
@@ -153,7 +176,6 @@ function playGame(){
 		if(x === 2)
 		{
 			display();
-			
 		};
 		
 		if(x === 3)
@@ -194,56 +216,94 @@ function playGame(){
 	
 		if(x === 10)
 		{
+			//stop the interval and change the music
+			clearInterval(timer);
 			stopBeasties();
 			playEddie();
+			//calculate number of unanswered questions
 			notAnswered = 10 - (answerCorrect + incorrectAnswer);
+			//display game stats
 			$("#title").html("Game Over");
 			$("#firstAnswer").html("Correct: " + answerCorrect);
 			$("#secondAnswer").html("Incorrect: " + incorrectAnswer);
 			$("#thirdAnswer").html("Not Answered: " + notAnswered);
-			$("#fourthAnswer").html("");
-			//reset button
+			$("#fourthAnswer").html("Oxfam estimates that it would take $60 billion annually to end extreme global poverty--that's less than 1/4 the income of the top 100 richest billionaires.");
+			//target the original start button, but change text to reflect that we are restarting
+			$(".startButton").show().text("try again");
+			//reset the gloabal variables so game can restart
+			answerCorrect = 0;
+			incorrectAnswer =0;
+			notAnswered = 0;
+			x = 0;
 		}
 
-		x++;
-}
-
-
-
-
-//General Code
-//------------------------------------------------------------------------------------------------
-
-$("#startButton").click(function(e)
-{	
-	$("#startButton").hide();
-	display();	
-	playBeasties();
-	var timer = setInterval(function() {playGame()}, 10000);
+		
+}, 10000);
 	
 
-$(".answer").click(function(e){
-	console.log(this.textContent);
-			if (this.textContent === questions.quest[x].correctAnswer)
+$(".answer").unbind().click(function(e)
+{
+	console.log("run");
+	if (this.textContent === questions.quest[x].correctAnswer)
+	{
+		$("#title").html("Correct!!!");
+		$("#firstAnswer").html("");
+		$("#secondAnswer").html("");
+		$("#thirdAnswer").html("");
+		$("#fourthAnswer").html("");
+		answerCorrect = answerCorrect + 1;
+			if(x === 0)
 			{
-				$("#title").html("Correct!!!");
-				$("#firstAnswer").html("");
-				$("#secondAnswer").html("");
-				$("#thirdAnswer").html("");
-				$("#fourthAnswer").html("");
-				answerCorrect = answerCorrect + 1;
+				$("#firstAnswer").html("that's a whole lot of people");
 			}
-			else
+			if(x === 1)
 			{
-				$("#title").html("Wrong Answer");
-				$("#firstAnswer").html("");
-				$("#secondAnswer").html("");
-				$("#thirdAnswer").html("");
-				$("#fourthAnswer").html("");
-				incorrectAnswer = incorrectAnswer + 1;
+				$("#firstAnswer").html("that really is a LOT of people");
 			}
+			if(x === 2)
+			{
+				$("#firstAnswer").html("it take a lot of power to fire up that big screen");
+			}
+			if(x === 3)
+			{
+				$("#firstAnswer").html("");
+			}
+			if(x === 4)
+			{
+				$("#firstAnswer").html("");
+			}
+			if(x === 5)
+			{
+				$("#firstAnswer").html("that's no microwave, no television, no air conditioning...");
+			}
+			if(x === 6)
+			{
+				$("#firstAnswer").html("");
+			}
+			if(x === 7)
+			{
+				$("#firstAnswer").html("");
+			}
+			if(x === 8)
+			{
+				$("#firstAnswer").html("");
+			}
+			if(x === 9)
+			{
+				$("#firstAnswer").html("the seating capacity of madison square garden is 18,200");
+			}
+	}
+	else
+	{
+		$("#title").html("wrong answer");
+		$("#firstAnswer").html("the correct answer is: " + questions.quest[x].correctAnswer);
+		$("#secondAnswer").html("");
+		$("#thirdAnswer").html("");
+		$("#fourthAnswer").html("");
+		incorrectAnswer = incorrectAnswer + 1;
+	}
 
-	});	
+});	
 
 			
 

@@ -1,5 +1,5 @@
 html, body {
-	margin: 0
+	margin: 0;
 	padding: 0;
 }
 
@@ -13,12 +13,12 @@ html, body {
 	width: 50%;
 	margin-left: auto;
 	margin-right: auto;
-	height: 40%;
 	text-align: center;
 	border: 2px solid rgb(75,45,16);
 	border-radius: 25px;
 	font-family: "brandon-grotesque", "Brandon Grotesque", sans-serif;
 	color: rgb(81,35,3); 
+	padding: 15px;
 }
 
 #timeRemaining{
@@ -48,14 +48,25 @@ h1{
 	margin-left: auto;
 	margin-right: auto;
 	overflow: auto;
-	line-height: 15px;
+	line-height: 20px;
 	border-radius: 25px;
-	padding-left: 6px;
+	padding-left: 12px;
+}
 
-;
+.answer:hover{
+	background-color: rgb(204,231,16);
 }
 
 #title{
-	margin-top: 13px;
 	margin-bottom: 13px;
+	color: black;
+}
+
+.startButton{
+	font-family: "brandon-grotesque", "Brandon Grotesque", sans-serif;
+	border-radius: 25px;
+	border: 1px solid rgb(81,35,3);
+	background-color: rgb(226,231,234); 
+	color: rgb(81,35,3);
+
 }
