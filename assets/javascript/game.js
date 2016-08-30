@@ -238,7 +238,7 @@ $(".startButton").click(function(e)
 		}
 
 		
-}, 10000);
+}, 20000);
 	
 
 $(".answer").unbind().click(function(e)
